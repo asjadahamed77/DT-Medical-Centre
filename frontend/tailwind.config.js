@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         mainColor: '#161D6F',
       },
+      gridTemplateColumns: {
+        'auto-fill': 'repeat(auto-fill, minmax(200px, 1fr))', // Custom column setup
+      },
     },
   },
   plugins: [],

@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.active hr{
-    @apply block
+html {
+    scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar{
+.active hr {
+    @apply block;
+}
+
+::-webkit-scrollbar {
     display: none;
 }
