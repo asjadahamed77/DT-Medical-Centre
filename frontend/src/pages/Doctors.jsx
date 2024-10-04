@@ -17,6 +17,9 @@ const Doctors = () => {
   useEffect(()=>{
     applyFilter()
   },[doctors,speciality])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <p className='text-gray-600'>Browse through the doctors specialist.</p>
