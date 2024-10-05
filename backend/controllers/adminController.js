@@ -5,7 +5,7 @@ import doctorModel from "../models/doctorModel.js";
 import jwt from 'jsonwebtoken'
 // ADD DOCTOR
 
-const addDoctor = async () => {
+const addDoctor = async (req,res) => {
   try {
     const {
       name,
