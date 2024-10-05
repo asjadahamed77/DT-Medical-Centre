@@ -1,14 +1,18 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 
 export const AdminContext = createContext()
 
 const AdminContextProvider = (props)=> {
 
-   
+    const [adminToken,setAdminToken] = useState(localStorage.getItem('adminToken')?localStorage.getItem('adminToken'):"")
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 
     const value = {
-       
+       adminToken,
+       setAdminToken,
+       backendUrl,
     }
 
     return (
