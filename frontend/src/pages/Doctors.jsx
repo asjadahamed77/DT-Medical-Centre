@@ -26,7 +26,7 @@ const Doctors = () => {
       <p className='text-gray-600'>Browse through the doctors specialist.</p>
       <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
         <button className={`sm:hidden py-1 px-3 border rounded text-sm transition-all duration-300 ${showFilter?'bg-mainColor text-white':''} `} onClick={()=>setShowFilter(prev => !prev)}>Filters</button>
-        <div className= {`${showFilter?'':'hidden'} flex flex-col gap-4 text-sm text-gray-600`}>
+        <div className= {`${showFilter?'':'hidden'} sm:flex flex-col gap-4 text-sm text-gray-600`}>
           <p onClick={()=> speciality === 'General physician'?navigate('/doctors'):navigate('/doctors/General physician')} className={`w-[94vw] sm:w-44 pl-3 py-1.5 border border-gray-300 rounded transition-all cursor-pointer pr-12 ${speciality === "General physician" ? 'bg-indigo-100 text-black' : ''}`}>General Physician</p>
           <p onClick={()=> speciality === 'Gynecologist'?navigate('/doctors'):navigate('/doctors/Gynecologist')} className={`w-[94vw] sm:w-44 pl-3 py-1.5 border border-gray-300 rounded transition-all cursor-pointer pr-12 ${speciality === "Gynecologist" ? 'bg-indigo-100 text-black' : ''}`}>Gynecologist</p>
           <p onClick={()=> speciality === 'Dermatologist'?navigate('/doctors'):navigate('/doctors/Dermatologist')} className={`w-[94vw] sm:w-44 pl-3 py-1.5 border border-gray-300 rounded transition-all cursor-pointer pr-12 ${speciality === "Dermatologist" ? 'bg-indigo-100 text-black' : ''}`}>Dermatologist</p>
