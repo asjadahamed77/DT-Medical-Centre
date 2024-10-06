@@ -9,6 +9,7 @@ const AppContextProvider = (props)=> {
    const currency = 'Rs'
    const backendUrl = process.env.REACT_APP_BACKEND_URL
    const [doctors,setDoctors] = useState([])
+   const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
 
    const getDoctorsData = async()=>{
     try {
@@ -32,6 +33,8 @@ const AppContextProvider = (props)=> {
         doctors,
         currency,
         backendUrl,
+        token,
+        setToken,
     }
 
     return (
