@@ -120,4 +120,26 @@ const appointmentsAdmin = async(req,res)=>{
   }
 }
 
-export { addDoctor, adminLogin, allDoctors, appointmentsAdmin  };
+// API for appointment cancellation
+const cancelAppoinment = async(req,res)=>{
+  try {
+    const { appointmentId} = req.body
+    const appointmentData = await appointmentModel.findById(appointmentId)
+   
+    await appointmentModel.findByIdAndUpdate(appointmentId,{cancelled:true})
+
+    // Releasing Doctor Slot
+    const {docId, slotDate, slotTime} = appointmentData
+    const doctordata = await doctorModel.findById(docId)
+
+    let slots_booked = doctordata.slots_booked
+    slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime)
+    await doctorModel.findByIdAndUpdate(docId, {slots_booked})
+    res.json({success:true, message:"Appointment Cancelled"})
+
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+}
+export { addDoctor, adminLogin, allDoctors, appointmentsAdmin , cancelAppoinment };

@@ -3,7 +3,7 @@ import { AdminContext } from '../../context/AdminContext';
 import { AppContext } from '../../context/AppContext';
 import {assets} from '../../assets/assets'
 const AllAppointments = () => {
-  const { adminToken, appointments, getAllAppointments } = useContext(AdminContext);
+  const { adminToken, appointments, getAllAppointments, cancelAppointment } = useContext(AdminContext);
   const { calculateAge, currency } = useContext(AppContext);
   const months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -16,7 +16,7 @@ const AllAppointments = () => {
     if (adminToken) {
       getAllAppointments();
     }
-  }, [adminToken]);
+  }, [adminToken,appointments]);
 
   return (
     <div className='w-full max-w-6xl m-5 '>
@@ -48,7 +48,7 @@ const AllAppointments = () => {
               <p>{currency}.{item.docData.fees}</p>
               {
                 item.cancelled? <p className='text-red-400 text-xs font-medium'>Cancelled</p>
-                : <img className='w-10 cursor-pointer' src={assets.cancel_icon} alt="" />
+                : <img onClick={()=>cancelAppointment(item._id)} className='w-10 cursor-pointer' src={assets.cancel_icon} alt="" />
               }
             </div>
           ))
