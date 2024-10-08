@@ -29,7 +29,7 @@ const RelatedDoctors = ({speciality,docId}) => {
                 <img className='bg-blue-50' src={item.image} alt="DrImage" />
                 <div className='p-4'>
                 <div className={`flex items-center gap-2 text-sm text-center ${item.available?'bg-green-500':"bg-red-500"}  `} >
-                    <p className={`w-2 h-2 rounded-full ${item.available?'bg-green-500':"bg-red-500"} `}></p><p>{item.available?'Available':"Not Available"}</p>
+                    <p className={`w-2 h-2 rounded-full ${item.available?'text-green-500':"text-red-500"} `}></p><p>{item.available?'Available':"Not Available"}</p>
                   </div>
                   <p className='text-gray-900 text-lg font-medium'>{item.name}</p>
                   <p className='text-gray-600 text-sm'>{item.speciality}</p>
