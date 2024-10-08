@@ -3,11 +3,13 @@ import { assets } from '../assets/assets'
 import { AdminContext } from '../context/AdminContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { DoctorContext } from '../context/DoctorContext'
 const Login = () => {
     const [state,setState] = useState('Admin')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const {setAdminToken,backendUrl} = useContext(AdminContext)
+    const {setDoctorToken} = useContext(DoctorContext)
     const onSubmitHandler = async(e)=>{
         e.preventDefault()
         try {
@@ -22,10 +24,18 @@ const Login = () => {
                 }
 
             }else{
-
+                const {data} = await axios.post(backendUrl+"/api/doctor/login",{email,password})
+                if(data.success){
+                    localStorage.setItem('doctorToken',data.token)
+                    setDoctorToken(data.token)
+                    toast.success('Doctor Login Successfully')
+                }else{
+                    toast.error(data.message)
+                }
             }
         } catch (error) {
-            
+            toast.error(error)
+            console.log(error)
         }
     }
   return (
@@ -40,7 +50,7 @@ const Login = () => {
             <p>Password</p>
             <input onChange={(e)=>setPassword(e.target.value)} value={password} className='border border-[#dadada] rounded w-full p-2 mt-1' type="password" required />
         </div>
-        <button className='w-full bg-mainColor text-white py-2 rounded-md text-base mt-2 '>Login</button>
+        <button type='submit' className='w-full bg-mainColor text-white py-2 rounded-md text-base mt-2 '>Login</button>
         {
             state === 'Admin'
             ? <p>Doctor Login? <span className="text-mainColor underline cursor-pointer" onClick={()=>setState('Doctor')}>Click Here</span></p>
