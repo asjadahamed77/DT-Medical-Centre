@@ -53,7 +53,7 @@ const AppContextProvider = (props)=> {
    },[token])
 
     const value = {
-        doctors,
+        doctors, getDoctorsData,
         currency,
         backendUrl,
         token,

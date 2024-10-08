@@ -8,6 +8,7 @@ const AdminContextProvider = (props)=> {
     const [adminToken,setAdminToken] = useState(localStorage.getItem('adminToken')?localStorage.getItem('adminToken'):"")
     const [doctors, setDoctors] = useState([]);
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const [appointments,setAppointments] = useState([])
 
     const getAllDoctors = async()=>{
         try {
@@ -38,6 +39,20 @@ const AdminContextProvider = (props)=> {
         }
     }
 
+    const getAllAppointments = async()=>{
+        try {
+            const {data} = await axios.get(backendUrl+"/api/admin/appointments",{headers:{adminToken}})
+            if(data.success){
+                setAppointments(data.appointments)
+            }else{
+                toast.error(data.error)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     const value = {
        adminToken,
        setAdminToken,
@@ -45,6 +60,9 @@ const AdminContextProvider = (props)=> {
        doctors,
        getAllDoctors,
        changeAvailability,
+       appointments,
+       setAppointments,
+       getAllAppointments,
     }
 
     return (
