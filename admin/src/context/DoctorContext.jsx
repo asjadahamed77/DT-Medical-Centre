@@ -12,6 +12,7 @@ const DoctorContextProvider = (props) => {
   );
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [appointments, setAppointments] = useState([]);
+  const [dashData, setDashData] = useState(false);
 
   const getAppointments = async () => {
     try {
@@ -68,6 +69,22 @@ const DoctorContextProvider = (props) => {
     }
   };
 
+  const getDashData = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/doctor/dashboard", {
+        headers: { doctorToken },
+      });
+      if (data.success) {
+        setDashData(data.dashData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   const value = {
     doctorToken,
     setDoctorToken,
@@ -77,6 +94,9 @@ const DoctorContextProvider = (props) => {
     getAppointments,
     completeAppointment,
     cancelAppointment,
+    dashData,
+    setDashData,
+    getDashData
   };
 
   return (
