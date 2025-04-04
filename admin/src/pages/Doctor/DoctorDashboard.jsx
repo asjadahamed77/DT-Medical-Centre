@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import { AppContext } from '../../context/AppContext'
 const DoctorDashboard = () => {
     const {   doctorToken,dashData,
-        setDashData,
+        
         getDashData,cancelAppointment, completeAppointment} = useContext(DoctorContext)
 
         const {currency} = useContext(AppContext)
