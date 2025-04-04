@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Doctors from "./pages/Doctors";
 import Login from "./pages/Login";
@@ -15,9 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className="mx-4 sm:mx-[10%]">
-      <BrowserRouter>
       <Navbar />
-      <ToastContainer position='top-center' autoClose={1000} draggable    />
+      <ToastContainer position='top-center' autoClose={1000} draggable />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<Doctors />} />
@@ -30,9 +29,6 @@ function App() {
         <Route path="/appointment/:docId" element={<Appointments />} />
       </Routes>
       <Footer />
-      
-      </BrowserRouter>
-      
     </div>
   );
 }

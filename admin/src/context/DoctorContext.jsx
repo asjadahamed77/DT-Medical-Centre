@@ -10,7 +10,7 @@ const DoctorContextProvider = (props) => {
       ? localStorage.getItem("doctorToken")
       : ""
   );
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_API_URL;
   const [appointments, setAppointments] = useState([]);
   const [dashData, setDashData] = useState(false);
   const [profileData,setProfileData] = useState(false)
