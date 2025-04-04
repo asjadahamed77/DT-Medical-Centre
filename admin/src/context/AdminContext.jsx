@@ -7,7 +7,7 @@ const AdminContextProvider = (props)=> {
 
     const [adminToken,setAdminToken] = useState(localStorage.getItem('adminToken')?localStorage.getItem('adminToken'):"")
     const [doctors, setDoctors] = useState([]);
-    const backendUrl = import.meta.env.VITE_API_URL;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [appointments,setAppointments] = useState([])
     const [dashData,setDashData] = useState(false)
 

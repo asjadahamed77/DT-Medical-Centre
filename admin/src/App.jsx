@@ -1,4 +1,4 @@
-import { BrowserRouter, Route,Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,13 +14,13 @@ import { DoctorContext } from './context/DoctorContext';
 import DoctorDashboard from './pages/Doctor/DoctorDashboard';
 import DoctorAppointments from './pages/Doctor/DoctorAppointments';
 import DoctorProfile from './pages/Doctor/DoctorProfile';
+
 function App() {
   const {adminToken} = useContext(AdminContext)
   const {doctorToken} = useContext(DoctorContext)
   return adminToken || doctorToken ? (
     <div className='bg-[#f8f9fd]'>
-      <BrowserRouter>
-      <ToastContainer position='top-center' autoClose={1000} draggable    />
+      <ToastContainer position='top-center' autoClose={1000} draggable />
       <Navbar />
       <div className='flex items-start'>
         <Sidebar />
@@ -37,11 +37,10 @@ function App() {
           <Route path='/doctor-profile' element={<DoctorProfile />} />
         </Routes>
       </div>
-      </BrowserRouter>
     </div>
   ):(
     <>
-    <ToastContainer position='top-center' autoClose={1000} draggable    />
+    <ToastContainer position='top-center' autoClose={1000} draggable />
     <Login />
     </>
   )
