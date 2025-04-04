@@ -33,7 +33,7 @@ const DoctorProfile = () => {
         if(doctorToken){
             getProfileData()
         }
-    },[doctorToken])
+    },[doctorToken,getProfileData])
   return profileData && (
     <div>
       <div className='flex flex-col gap-4 m-5'>

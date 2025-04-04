@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { AdminContext } from '../../context/AdminContext';
 import { AppContext } from '../../context/AppContext';
 import {assets} from '../../assets/assets'
@@ -12,11 +12,15 @@ const AllAppointments = () => {
     return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2];
   };
 
-  useEffect(() => {
+  const fetchAppointments = useCallback(() => {
     if (adminToken) {
       getAllAppointments();
     }
-  }, [adminToken,appointments]);
+  }, [adminToken, getAllAppointments]);
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [fetchAppointments]);
 
   return (
     <div className='w-full max-w-6xl m-5 '>

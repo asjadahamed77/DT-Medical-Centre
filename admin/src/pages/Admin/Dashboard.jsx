@@ -14,7 +14,7 @@ const Dashboard = () => {
     if(adminToken){
       getDashData()
     }
-  },[adminToken])
+  },[adminToken, getDashData])
   return dashData && (
     <div className='m-5'>
       <div className='flex flex-wrap gap-3'> 
